@@ -17,12 +17,12 @@ public struct LayoutProperty<Anchor: LayoutAnchor> {
 }
 
 public class LayoutProxy {
-    lazy var leading = property(with: view.leadingAnchor)
-    lazy var trailing = property(with: view.trailingAnchor)
-    lazy var top = property(with: view.topAnchor)
-    lazy var bottom = property(with: view.bottomAnchor)
-    lazy var width = property(with: view.widthAnchor)
-    lazy var height = property(with: view.heightAnchor)
+    public lazy var leading = property(with: view.leadingAnchor)
+    public lazy var trailing = property(with: view.trailingAnchor)
+    public lazy var top = property(with: view.topAnchor)
+    public lazy var bottom = property(with: view.bottomAnchor)
+    public lazy var width = property(with: view.widthAnchor)
+    public lazy var height = property(with: view.heightAnchor)
 
     private let view: UIView
 
