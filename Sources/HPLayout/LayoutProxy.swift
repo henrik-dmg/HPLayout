@@ -8,6 +8,8 @@ public class LayoutProxy {
     public lazy var bottom = property(with: view.bottomAnchor)
     public lazy var width = property(with: view.widthAnchor)
     public lazy var height = property(with: view.heightAnchor)
+    public lazy var centerX = property(with: view.centerXAnchor)
+    public lazy var centerY = property(with: view.centerYAnchor)
 
     let view: UIView
 
