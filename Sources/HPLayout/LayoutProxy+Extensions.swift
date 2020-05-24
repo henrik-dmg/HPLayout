@@ -1,0 +1,43 @@
+import Foundation
+import UIKit
+
+public enum LayoutGuide {
+    case superview, readableContent, safeArea
+}
+
+public extension LayoutProxy {
+
+    func verticallySpan(_ layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+        switch layoutGuide {
+        case .superview:
+            top == view.topAnchor + constant
+            bottom == view.bottomAnchor + constant
+        case .readableContent:
+            top == view.readableContentGuide.topAnchor + constant
+            bottom == view.readableContentGuide.bottomAnchor + constant
+        case .safeArea:
+            top == view.safeAreaLayoutGuide.topAnchor + constant
+            bottom == view.safeAreaLayoutGuide.bottomAnchor + constant
+        }
+    }
+
+    func horizontallySpan(_ layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+        switch layoutGuide {
+        case .superview:
+            leading == view.leadingAnchor + constant
+            trailing == view.trailingAnchor + constant
+        case .readableContent:
+            leading == view.readableContentGuide.leadingAnchor + constant
+            trailing == view.readableContentGuide.trailingAnchor + constant
+        case .safeArea:
+            leading == view.safeAreaLayoutGuide.leadingAnchor + constant
+            trailing == view.safeAreaLayoutGuide.trailingAnchor + constant
+        }
+    }
+
+    func span(_ layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+        verticallySpan(layoutGuide, constant: constant)
+        horizontallySpan(layoutGuide, constant: constant)
+    }
+
+}

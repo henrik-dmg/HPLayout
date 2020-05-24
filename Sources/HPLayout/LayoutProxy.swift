@@ -1,21 +1,6 @@
 import Foundation
 import UIKit
 
-public protocol LayoutAnchor {
-    func constraint(equalTo anchor: Self,
-                    constant: CGFloat) -> NSLayoutConstraint
-    func constraint(greaterThanOrEqualTo anchor: Self,
-                    constant: CGFloat) -> NSLayoutConstraint
-    func constraint(lessThanOrEqualTo anchor: Self,
-                    constant: CGFloat) -> NSLayoutConstraint
-}
-
-extension NSLayoutAnchor: LayoutAnchor {}
-
-public struct LayoutProperty<Anchor: LayoutAnchor> {
-    fileprivate let anchor: Anchor
-}
-
 public class LayoutProxy {
     public lazy var leading = property(with: view.leadingAnchor)
     public lazy var trailing = property(with: view.trailingAnchor)
@@ -24,7 +9,7 @@ public class LayoutProxy {
     public lazy var width = property(with: view.widthAnchor)
     public lazy var height = property(with: view.heightAnchor)
 
-    private let view: UIView
+    let view: UIView
 
     fileprivate init(view: UIView) {
         self.view = view
@@ -33,6 +18,10 @@ public class LayoutProxy {
     private func property<A: LayoutAnchor>(with anchor: A) -> LayoutProperty<A> {
         return LayoutProperty(anchor: anchor)
     }
+}
+
+public struct LayoutProperty<Anchor: LayoutAnchor> {
+    fileprivate let anchor: Anchor
 }
 
 public extension LayoutProperty {
