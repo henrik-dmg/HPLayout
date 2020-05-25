@@ -8,30 +8,38 @@ public enum LayoutGuide {
 public extension LayoutProxy {
 
     func verticallySpan(_ layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+        guard let superview = view.superview else {
+            return
+        }
+
         switch layoutGuide {
         case .superview:
-            top == view.topAnchor + constant
-            bottom == view.bottomAnchor - constant
+            top == superview.topAnchor + constant
+            bottom == superview.bottomAnchor - constant
         case .readableContent:
-            top == view.readableContentGuide.topAnchor + constant
-            bottom == view.readableContentGuide.bottomAnchor - constant
+            top == superview.readableContentGuide.topAnchor + constant
+            bottom == superview.readableContentGuide.bottomAnchor - constant
         case .safeArea:
-            top == view.safeAreaLayoutGuide.topAnchor + constant
-            bottom == view.safeAreaLayoutGuide.bottomAnchor - constant
+            top == superview.safeAreaLayoutGuide.topAnchor + constant
+            bottom == superview.safeAreaLayoutGuide.bottomAnchor - constant
         }
     }
 
     func horizontallySpan(_ layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+        guard let superview = view.superview else {
+            return
+        }
+
         switch layoutGuide {
         case .superview:
-            leading == view.leadingAnchor + constant
-            trailing == view.trailingAnchor - constant
+            leading == superview.leadingAnchor + constant
+            trailing == superview.trailingAnchor - constant
         case .readableContent:
-            leading == view.readableContentGuide.leadingAnchor + constant
-            trailing == view.readableContentGuide.trailingAnchor - constant
+            leading == superview.readableContentGuide.leadingAnchor + constant
+            trailing == superview.readableContentGuide.trailingAnchor - constant
         case .safeArea:
-            leading == view.safeAreaLayoutGuide.leadingAnchor + constant
-            trailing == view.safeAreaLayoutGuide.trailingAnchor - constant
+            leading == superview.safeAreaLayoutGuide.leadingAnchor + constant
+            trailing == superview.safeAreaLayoutGuide.trailingAnchor - constant
         }
     }
 
@@ -41,24 +49,32 @@ public extension LayoutProxy {
     }
 
     func verticallyCenter(in layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+        guard let superview = view.superview else {
+            return
+        }
+
         switch layoutGuide {
         case .superview:
-            centerY == view.centerYAnchor + constant
+            centerY == superview.centerYAnchor + constant
         case .readableContent:
-            centerY == view.readableContentGuide.centerYAnchor + constant
+            centerY == superview.readableContentGuide.centerYAnchor + constant
         case .safeArea:
-            centerY == view.safeAreaLayoutGuide.centerYAnchor + constant
+            centerY == superview.safeAreaLayoutGuide.centerYAnchor + constant
         }
     }
 
     func horizontallyCenter(in layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+        guard let superview = view.superview else {
+            return
+        }
+
         switch layoutGuide {
         case .superview:
-            centerX == view.centerXAnchor + constant
+            centerX == superview.centerXAnchor + constant
         case .readableContent:
-            centerX == view.readableContentGuide.centerXAnchor + constant
+            centerX == superview.readableContentGuide.centerXAnchor + constant
         case .safeArea:
-            centerX == view.safeAreaLayoutGuide.centerXAnchor + constant
+            centerX == superview.safeAreaLayoutGuide.centerXAnchor + constant
         }
     }
 
