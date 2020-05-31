@@ -14,7 +14,7 @@ public class LayoutProxy {
 
     let view: UIView
 
-    fileprivate init(view: UIView) {
+    init(view: UIView) {
         self.view = view
     }
 
