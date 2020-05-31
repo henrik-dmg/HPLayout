@@ -7,7 +7,7 @@ public enum LayoutGuide {
 
 public extension LayoutProxy {
 
-    func verticallySpan(_ layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+    func spanVertically(_ layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
         guard let superview = view.superview else {
             return
         }
@@ -25,7 +25,7 @@ public extension LayoutProxy {
         }
     }
 
-    func horizontallySpan(_ layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+    func spanHorizontally(_ layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
         guard let superview = view.superview else {
             return
         }
@@ -44,11 +44,11 @@ public extension LayoutProxy {
     }
 
     func span(_ layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
-        verticallySpan(layoutGuide, constant: constant)
-        horizontallySpan(layoutGuide, constant: constant)
+        spanVertically(layoutGuide, constant: constant)
+        spanHorizontally(layoutGuide, constant: constant)
     }
 
-    func verticallyCenter(in layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+    func centerVertically(in layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
         guard let superview = view.superview else {
             return
         }
@@ -63,7 +63,7 @@ public extension LayoutProxy {
         }
     }
 
-    func horizontallyCenter(in layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
+    func centerHorizontally(in layoutGuide: LayoutGuide, constant: CGFloat = 0.00) {
         guard let superview = view.superview else {
             return
         }
@@ -79,8 +79,8 @@ public extension LayoutProxy {
     }
 
     func center(in layoutGuide: LayoutGuide) {
-        verticallyCenter(in: layoutGuide)
-        horizontallyCenter(in: layoutGuide)
+        centerVertically(in: layoutGuide)
+        centerHorizontally(in: layoutGuide)
     }
 
 }

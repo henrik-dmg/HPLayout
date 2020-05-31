@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 public class LayoutProxy {
+
     public lazy var leading = property(with: view.leadingAnchor)
     public lazy var trailing = property(with: view.trailingAnchor)
     public lazy var top = property(with: view.topAnchor)
@@ -20,6 +21,7 @@ public class LayoutProxy {
     private func property<A: LayoutAnchor>(with anchor: A) -> LayoutProperty<A> {
         return LayoutProperty(anchor: anchor)
     }
+
 }
 
 public struct LayoutProperty<Anchor: LayoutAnchor> {
@@ -27,6 +29,7 @@ public struct LayoutProperty<Anchor: LayoutAnchor> {
 }
 
 public extension LayoutProperty {
+
     func equal(to otherAnchor: Anchor, offsetBy constant: CGFloat = 0) {
         anchor.constraint(equalTo: otherAnchor,
                           constant: constant).isActive = true
@@ -43,13 +46,16 @@ public extension LayoutProperty {
         anchor.constraint(lessThanOrEqualTo: otherAnchor,
                           constant: constant).isActive = true
     }
+
 }
 
 public extension UIView {
+
     func layout(using closure: (LayoutProxy) -> Void) {
         translatesAutoresizingMaskIntoConstraints = false
         closure(LayoutProxy(view: self))
     }
+
 }
 
 public func +<A: LayoutAnchor>(lhs: A, rhs: CGFloat) -> (A, CGFloat) {
