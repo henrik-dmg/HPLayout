@@ -5,7 +5,7 @@ A simple layout DSL to make your Autolayout life a little easier.
 ### Xcode
 File -> Swift Packages -> Add Package Dependency -> https://github.com/henrik-dmg/HPLayout
 ### Package.swift
-`.pacakage(url: "https://github.com/henrik-dmg/HPLayout", from: "0.2.0")`
+`.package(url: "https://github.com/henrik-dmg/HPLayout", from: "0.2.0")`
 
 ## Usage
 ```swift
