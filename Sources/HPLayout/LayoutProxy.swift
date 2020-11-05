@@ -19,7 +19,7 @@ public class LayoutProxy {
     }
 
     private func property<A: LayoutAnchor>(with anchor: A) -> LayoutProperty<A> {
-        return LayoutProperty(anchor: anchor)
+        LayoutProperty(anchor: anchor)
     }
 
 }
@@ -31,30 +31,34 @@ public struct LayoutProperty<Anchor: LayoutAnchor> {
 public extension LayoutProperty {
 
     func equal(to otherAnchor: Anchor, offsetBy constant: CGFloat = 0) {
-        anchor.constraint(equalTo: otherAnchor,
-                          constant: constant).isActive = true
+        anchor.constraint(equalTo: otherAnchor, constant: constant).isActive = true
     }
 
-    func greaterThanOrEqual(to otherAnchor: Anchor,
-                            offsetBy constant: CGFloat = 0) {
-        anchor.constraint(greaterThanOrEqualTo: otherAnchor,
-                          constant: constant).isActive = true
+    func greaterThanOrEqual(to otherAnchor: Anchor, offsetBy constant: CGFloat = 0) {
+        anchor.constraint(greaterThanOrEqualTo: otherAnchor, constant: constant).isActive = true
     }
 
-    func lessThanOrEqual(to otherAnchor: Anchor,
-                         offsetBy constant: CGFloat = 0) {
-        anchor.constraint(lessThanOrEqualTo: otherAnchor,
-                          constant: constant).isActive = true
+    func lessThanOrEqual(to otherAnchor: Anchor, offsetBy constant: CGFloat = 0) {
+        anchor.constraint(lessThanOrEqualTo: otherAnchor, constant: constant).isActive = true
     }
 
 }
 
 public extension UIView {
 
-    func layout(using closure: (LayoutProxy) -> Void) {
+	@discardableResult
+    func layout(using closure: (LayoutProxy) -> Void) -> LayoutProxy {
         translatesAutoresizingMaskIntoConstraints = false
-        closure(LayoutProxy(view: self))
+		let proxy = LayoutProxy(view: self)
+		closure(proxy)
+		return proxy
     }
+
+	@discardableResult
+	func addSubview(_ view: UIView, layoutUsing closure: (LayoutProxy) -> Void) -> LayoutProxy {
+		addSubview(view)
+		return layout(using: closure)
+	}
 
 }
 
@@ -66,8 +70,7 @@ public func -<A: LayoutAnchor>(lhs: A, rhs: CGFloat) -> (A, CGFloat) {
     return (lhs, -rhs)
 }
 
-public func ==<A: LayoutAnchor>(lhs: LayoutProperty<A>,
-                         rhs: (A, CGFloat)) {
+public func ==<A: LayoutAnchor>(lhs: LayoutProperty<A>, rhs: (A, CGFloat)) {
     lhs.equal(to: rhs.0, offsetBy: rhs.1)
 }
 
@@ -75,8 +78,7 @@ public func ==<A: LayoutAnchor>(lhs: LayoutProperty<A>, rhs: A) {
     lhs.equal(to: rhs)
 }
 
-public func >=<A: LayoutAnchor>(lhs: LayoutProperty<A>,
-                         rhs: (A, CGFloat)) {
+public func >=<A: LayoutAnchor>(lhs: LayoutProperty<A>, rhs: (A, CGFloat)) {
     lhs.greaterThanOrEqual(to: rhs.0, offsetBy: rhs.1)
 }
 

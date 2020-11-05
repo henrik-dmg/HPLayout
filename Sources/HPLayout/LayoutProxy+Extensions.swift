@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 public enum LayoutGuide {
-    case superview, readableContent, safeArea
+    case superview, readableContent, safeArea, layoutMargins
 }
 
 public extension LayoutProxy {
@@ -22,6 +22,9 @@ public extension LayoutProxy {
         case .safeArea:
             top == superview.safeAreaLayoutGuide.topAnchor + constant
             bottom == superview.safeAreaLayoutGuide.bottomAnchor - constant
+		case .layoutMargins:
+			top == superview.layoutMarginsGuide.topAnchor + constant
+			bottom == superview.layoutMarginsGuide.bottomAnchor - constant
         }
     }
 
@@ -40,6 +43,9 @@ public extension LayoutProxy {
         case .safeArea:
             leading == superview.safeAreaLayoutGuide.leadingAnchor + constant
             trailing == superview.safeAreaLayoutGuide.trailingAnchor - constant
+		case .layoutMargins:
+			leading == superview.layoutMarginsGuide.leadingAnchor + constant
+			trailing == superview.layoutMarginsGuide.trailingAnchor - constant
         }
     }
 
@@ -60,6 +66,8 @@ public extension LayoutProxy {
             centerY == superview.readableContentGuide.centerYAnchor + constant
         case .safeArea:
             centerY == superview.safeAreaLayoutGuide.centerYAnchor + constant
+		case .layoutMargins:
+			centerY == superview.layoutMarginsGuide.centerYAnchor + constant
         }
     }
 
@@ -75,6 +83,8 @@ public extension LayoutProxy {
             centerX == superview.readableContentGuide.centerXAnchor + constant
         case .safeArea:
             centerX == superview.safeAreaLayoutGuide.centerXAnchor + constant
+		case .layoutMargins:
+			centerX == superview.layoutMarginsGuide.centerXAnchor + constant
         }
     }
 
