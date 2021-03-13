@@ -25,7 +25,9 @@ public class LayoutProxy {
 }
 
 public struct LayoutProperty<Anchor: LayoutAnchor> {
+
     fileprivate let anchor: Anchor
+
 }
 
 public extension LayoutProperty {
@@ -86,8 +88,7 @@ public func >=<A: LayoutAnchor>(lhs: LayoutProperty<A>, rhs: A) {
     lhs.greaterThanOrEqual(to: rhs)
 }
 
-public func <=<A: LayoutAnchor>(lhs: LayoutProperty<A>,
-                         rhs: (A, CGFloat)) {
+public func <=<A: LayoutAnchor>(lhs: LayoutProperty<A>, rhs: (A, CGFloat)) {
     lhs.lessThanOrEqual(to: rhs.0, offsetBy: rhs.1)
 }
 
