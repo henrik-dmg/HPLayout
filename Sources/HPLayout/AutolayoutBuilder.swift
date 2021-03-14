@@ -1,5 +1,10 @@
-import Foundation
+#if canImport(UIKit)
 import UIKit
+#endif
+
+#if canImport(AppKit)
+import AppKit
+#endif
 
 /// Based on Antoine Van Der Lee's implementation
 /// https://www.avanderlee.com/swift/result-builders/
@@ -38,32 +43,5 @@ extension NSLayoutConstraint: LayoutGroup {
 extension Array: LayoutGroup where Element == NSLayoutConstraint {
 
 	public var constraints: [NSLayoutConstraint] { self }
-
-}
-
-public extension NSLayoutConstraint {
-
-	/// Activate the layouts defined in the result builder parameter `constraints`.
-	static func activate(@AutolayoutBuilder constraints: () -> [NSLayoutConstraint]) {
-		activate(constraints())
-	}
-
-}
-
-public extension UIView {
-
-	func addSubview(_ subview: UIView, @AutolayoutBuilder constraints: (UIView) -> [NSLayoutConstraint]) {
-		addSubview(subview)
-		subview.layout(constraints: constraints)
-	}
-
-	func layout(@AutolayoutBuilder constraints: (UIView) -> [NSLayoutConstraint]) {
-		guard superview != nil else {
-			print("[NOTE]: Could not activate constraints through AutolayoutBuilder since the view has no superview")
-			return
-		}
-		translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate(constraints(self))
-	}
 
 }

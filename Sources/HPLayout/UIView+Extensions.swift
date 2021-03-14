@@ -1,4 +1,4 @@
-import Foundation
+#if canImport(UIKit)
 import UIKit
 
 public enum LayoutGuide {
@@ -108,3 +108,5 @@ public extension UIView {
 	}
 
 }
+
+#endif
