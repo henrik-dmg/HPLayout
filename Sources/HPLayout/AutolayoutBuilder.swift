@@ -57,7 +57,6 @@ public extension UIView {
 		subview.layout(constraints: constraints)
 	}
 
-
 	func layout(@AutolayoutBuilder constraints: (UIView) -> [NSLayoutConstraint]) {
 		guard superview != nil else {
 			print("[NOTE]: Could not activate constraints through AutolayoutBuilder since the view has no superview")
