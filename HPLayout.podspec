@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "HPLayout"
-  s.version      = "1.0.0"
+  s.version      = "2.0.0"
   s.summary      = "A simple layout DSL to make your Autolayout life a little easier"
 
   s.homepage     = "https://panhans.dev/opensource/hpnetwork"
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.ios.framework = "UIKit"
   s.tvos.framework = "UIKit"
 
-  s.swift_version = "5.1"
+  s.swift_version = "5.4"
   s.requires_arc = true
 
 end
