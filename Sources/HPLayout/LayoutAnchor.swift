@@ -1,13 +1,14 @@
-#if canImport(UIKit)
+#if os(iOS) || os(tvOS)
 import UIKit
 #endif
 
-#if canImport(AppKit)
+#if os(OSX)
 import AppKit
 #endif
 
 // MARK: - X Axis
 
+#if os(iOS) || os(OSX) || os(tvOS)
 public func +(lhs: NSLayoutXAxisAnchor, rhs: CGFloat) -> (NSLayoutXAxisAnchor, CGFloat) {
 	return (lhs, rhs)
 }
@@ -108,3 +109,4 @@ public func <=(lhs: NSLayoutDimension, rhs: (NSLayoutDimension, CGFloat)) -> NSL
 public func <=(lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
 	lhs.constraint(lessThanOrEqualTo: rhs)
 }
+#endif

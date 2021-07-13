@@ -1,4 +1,4 @@
-#if canImport(UIKit)
+#if os(iOS) || os(tvOS)
 import UIKit
 
 public enum LayoutGuide {
@@ -108,5 +108,4 @@ public extension UIView {
 	}
 
 }
-
 #endif

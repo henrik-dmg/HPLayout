@@ -1,13 +1,14 @@
-#if canImport(AppKit)
+#if os(OSX)
 import AppKit
 public typealias LayoutView = NSView
 #endif
 
-#if canImport(UIKit)
+#if os(iOS) || os(tvOS)
 import UIKit
 public typealias LayoutView = UIView
 #endif
 
+#if os(iOS) || os(OSX) || os(tvOS)
 public extension LayoutView {
 
 	// MARK: - Passed in view
@@ -43,5 +44,4 @@ public extension LayoutView {
 	}
 
 }
-
-
+#endif
